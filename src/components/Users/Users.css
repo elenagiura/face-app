@@ -1,0 +1,22 @@
+#create-new, #sort {
+	float:right;
+	padding: 5px 15px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	background-color: #c46019;
+	color: #fff; 
+	margin-left:10px;
+}
+
+#sort {
+	background-color: #6262c2;
+}
+
+main section.users {
+	margin:15px 0;
+}
+
+main>div>p {
+	font-weight: bold;
+}

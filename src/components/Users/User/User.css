@@ -1,0 +1,43 @@
+article {
+	float: left;
+	width: 20%;
+	min-height: 300px;
+	margin:2.5%;
+	margin-bottom: 0;
+	border: solid 2px #d2cdcd;
+	border-radius:5px;
+	position: relative;
+}
+
+article img {
+	display: block;
+	margin: 10px auto;
+	border-radius:5px;
+}
+
+article p {
+	margin:5px 10px;
+}
+
+article p span{
+	font-weight: bold;
+}
+
+article div.buttons {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+
+article div.buttons button {
+	padding: 5px 10px;
+	margin: 1.5%;
+	width: 30%;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	background-color: #c46019;
+	color: #fff; 
+	font-size: 8px;
+	margin-bottom: 5px;
+}
