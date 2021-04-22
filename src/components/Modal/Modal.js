@@ -15,7 +15,7 @@ export class Modal extends React.Component {
 		}
 	}
 
-	storeData = (data, stateProp) => this.setState({...this.state, [stateProp]:data});
+	storeData = (data, stateProp) => this.setState({[stateProp]:data});
 
 	displayError = () => this.state.errorMessage ? <div className="error-message">You didn't enter all datas!<button onClick={this.validator} >X</button></div> : null;
 

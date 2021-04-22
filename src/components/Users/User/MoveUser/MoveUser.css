@@ -1,0 +1,33 @@
+.move-user {
+	width: 55%;
+	margin: 0 auto;
+}
+
+.move-user button{
+	padding: 5px 15px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	background-color: #c46019;
+	color: #fff; 
+	margin-left:10px;
+}
+
+.move-user button:first-child{
+	margin-left: 0;
+}
+
+.list .move-user button{
+	width: auto;
+	position:absolute;
+	right: 25px;
+	bottom: 50px;
+}
+
+.list .move-user button{
+	width: 100px;
+}
+
+.list .move-user button:first-child{
+	bottom: 90px;
+}

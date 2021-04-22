@@ -1,6 +1,7 @@
 import React, {setState} from 'react';
 import './User.css';
-import {Modal} from '../../Modal/Modal'
+import {Modal} from '../../Modal/Modal';
+import {MoveUser} from './MoveUser/MoveUser';
 
 export class User extends React.Component {
 	constructor(props) {
@@ -14,6 +15,7 @@ export class User extends React.Component {
 			},
 			prevId:props.user.id,
 			modal:false,
+			layout: props.layout
 		}
 	}
 
@@ -21,7 +23,7 @@ export class User extends React.Component {
 		if (user) {
 			this.setState({user:user, modal:!this.state.modal}, this.props.edit(user, this.state.prevId));
 		} else {
-			this.setState({...this.state, modal:!this.state.modal})
+			this.setState({modal:!this.state.modal})
 		}
 	}
 
@@ -29,13 +31,16 @@ export class User extends React.Component {
 
 	render() {
 		return (
-			<article>
+			<article className={`clearfix ${this.props.layout}`}>
 				<img src="http://placehold.jp/150x150.png" alt="User picture"/>
-				<p>Name: <span>{this.state.user.name}</span></p>
-				<p>Age: {this.state.user.age}</p>
-				<p>Gender: {this.state.user.gender}</p>
+				<div className='infos'>
+					<p>Name: <span>{this.state.user.name}</span></p>
+					<p>Age: {this.state.user.age}</p>
+					<p>Gender: {this.state.user.gender}</p>
+				</div>
+				{this.props.moveUser ? <MoveUser move={this.props.move} id={this.state.user.id} layout={this.props.layout}/> : null}
 				<div className="buttons">
-					<button onClick={()=>this.setState({...this.state, modal:!this.state.modal})}>EDIT</button>
+					<button onClick={()=>this.setState({modal:!this.state.modal})}>EDIT</button>
 					<button onClick={()=>this.props.clone(this.state.user.id)}>CLONE</button>
 					<button onClick={()=>this.props.delete(this.state.user.id)}>DELETE</button>
 				</div>

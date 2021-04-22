@@ -41,3 +41,31 @@ article div.buttons button {
 	font-size: 8px;
 	margin-bottom: 5px;
 }
+
+.list {
+	width: 70%;
+	float: none;
+	margin: 20px auto;
+	min-height: auto;
+}
+
+.list img{
+	float:left;
+	margin:15px;
+	width: 30%;
+}
+
+.list .infos{
+	margin:15px;
+}
+
+.list div.buttons{
+	width:75%;
+	margin:10px;
+	bottom: 0;
+	left: 32%;
+}
+
+.list div.buttons button {
+	width: 25%;
+}

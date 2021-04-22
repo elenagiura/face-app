@@ -1,4 +1,15 @@
-#create-new, #sort {
+.layout {
+	float:left;
+	padding:15px;
+	border: solid 1px #6262c2;
+	border-radius: 5px;
+}
+
+.layout #grid{
+	margin-left:0;
+}
+
+#create-new, #sort, #grid, #list, #move-item {
 	float:right;
 	padding: 5px 15px;
 	outline: none;
@@ -9,7 +20,11 @@
 	margin-left:10px;
 }
 
-#sort {
+#grid.chencked, #list.chencked, #sort.chencked, #move-item.chencked {
+	background-color:#1a1a4f;
+}
+
+#sort, #move-item {
 	background-color: #6262c2;
 }
 
