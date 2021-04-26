@@ -24,7 +24,7 @@
 	background-color:#1a1a4f;
 }
 
-#grid.hidden, #list.hidden, #sort.hidden, #move-item.hidden {
+.hidden {
 	display:none;
 }
 
