@@ -35,3 +35,7 @@ main section.users {
 main>div>p {
 	font-weight: bold;
 }
+
+.hidden {
+	display:none;
+}

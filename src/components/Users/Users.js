@@ -5,6 +5,8 @@ import uuid from 'react-uuid';
 import {User} from './User/User';
 import {Modal} from '../Modal/Modal';
 
+const url='https://face-app-7a95f-default-rtdb.firebaseio.com/data';
+
 export class Users extends React.Component {
 	constructor(props) {
 	  super();
@@ -22,6 +24,10 @@ export class Users extends React.Component {
 	      checkedLayout: false,
 	      moveUser: false
 	    }
+	}
+
+	componentDidMount() {
+		this.getUsers();
 	}
 
 	showUsers = () => {
@@ -61,26 +67,44 @@ export class Users extends React.Component {
 
 	filterUsers = () => this.state.users.filter(user => (user.name.toLowerCase().indexOf(this.props.searchUser))>-1);
 
-	editUser = (changedUser, prevId) => {
-		const users = this.state.users.map(user => user.id === prevId ? changedUser : user)
-		this.setState({users: users, chencked: false});
+	editUser = (user) => {
+		fetch(`${url}/${user.id}.json`, {
+			method: 'PATCH',
+			body: JSON.stringify(user)
+		})
+		.then(data => data.status===200 && this.getUsers())
 	}
 
-	cloneUser = (id) => {
-		const userForClone = this.state.users.find(user => user.id === id)
-		const index = this.state.users.indexOf(userForClone);
-		this.state.users.splice(index,0,{...userForClone, id:uuid()});
-		this.setState({users: this.state.users})
-	}
+	cloneUser = (user) => this.addUser(user);
 
-	deleteUser = (id) => { 
-		const removedUser = this.state.users.filter(user => user.id !== id);
-		this.setState({users: removedUser});
+	deleteUser = (user) => { 
+		fetch(`${url}/${user.id}.json`, {
+			method:'DELETE',
+		})
+		.then(data => data.status===200 && this.getUsers())
 	}
 
 	addUser = (user) => {
-		const newUsers = [user,...this.state.users];
-		this.setState({users: newUsers, chencked:false});
+		fetch(`${url}.json`, {
+			method: 'POST',
+			body: JSON.stringify(user)
+		})
+		.then(data => data.status===200 && this.getUsers())
+	}
+
+	getUsers = () => {
+		fetch(`${url}.json`)
+		.then(data => data.json())
+		.then(results => {
+			const newUsers = [];
+			for(const result in results) {
+				newUsers.unshift({
+					...results[result], id:result
+				})
+			}
+			console.log(newUsers)
+			this.setState({users:newUsers})
+		})
 	}
 
 	modal = (user) => {
@@ -106,9 +130,9 @@ export class Users extends React.Component {
 				<div className="wrapper">
 					<div className="clearfix">
 						<button id="create-new" onClick={()=>this.setState({modal:!this.state.modal})}>ADD NEW USER</button>
-						<button id="sort" className={`${this.state.chencked ? 'chencked': ''}`} onClick={this.sort}>SORT USERS BY NAME</button>
-						<button id="move-item" className={`${this.state.moveUser ? 'chencked': ''}`}  onClick={()=> this.setState({moveUser: !this.state.moveUser})}>MOVE USER</button>
-						<div className="layout clearfix">
+						<button id="sort" className={`${this.state.chencked ? 'chencked': ''}${this.state.users.length<=1?'hidden':''}`} onClick={this.sort}>SORT USERS BY NAME</button>
+						<button id="move-item" className={`${this.state.moveUser ? 'chencked': ''}${this.state.users.length<=1?'hidden':''}`} onClick={()=> this.setState({moveUser: !this.state.moveUser})}>MOVE USER</button>
+						<div className={`layout clearfix ${this.state.users.length?'':'hidden'}`}>
 							<button id="list" className={`${this.state.checkedLayout ? 'chencked' : ''}`} onClick={() => this.changeLayout(true)}>LIST</button>
 							<button id="grid" className={`${!this.state.checkedLayout ? 'chencked' : ''}`} onClick={() => this.changeLayout(false)}>GRID</button>
 						</div>

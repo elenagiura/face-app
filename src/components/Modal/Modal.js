@@ -1,6 +1,5 @@
 import React, {setState} from 'react';
 import './Modal.css'
-import uuid from 'react-uuid';
 
 export class Modal extends React.Component {
 	constructor (props) {
@@ -10,8 +9,8 @@ export class Modal extends React.Component {
 			name: props.user.name,
 			age: props.user.age,
 			gender:props.user.gender,
+			id:props.user.id,
 			errorMessage:false,
-			id: uuid()
 		}
 	}
 

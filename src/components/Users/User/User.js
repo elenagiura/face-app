@@ -13,7 +13,6 @@ export class User extends React.Component {
 				gender: props.user.gender,
 				id: props.user.id,
 			},
-			prevId:props.user.id,
 			modal:false,
 			layout: props.layout
 		}
@@ -21,7 +20,7 @@ export class User extends React.Component {
 
 	modal = (user) => {
 		if (user) {
-			this.setState({user:user, modal:!this.state.modal}, this.props.edit(user, this.state.prevId));
+			this.setState({user:user, modal:!this.state.modal}, this.props.edit(user));
 		} else {
 			this.setState({modal:!this.state.modal})
 		}
@@ -41,8 +40,8 @@ export class User extends React.Component {
 				{this.props.moveUser ? <MoveUser move={this.props.move} id={this.state.user.id} layout={this.props.layout}/> : null}
 				<div className="buttons">
 					<button onClick={()=>this.setState({modal:!this.state.modal})}>EDIT</button>
-					<button onClick={()=>this.props.clone(this.state.user.id)}>CLONE</button>
-					<button onClick={()=>this.props.delete(this.state.user.id)}>DELETE</button>
+					<button onClick={()=>this.props.clone(this.state.user)}>CLONE</button>
+					<button onClick={()=>this.props.delete(this.state.user)}>DELETE</button>
 				</div>
 				{this.showModal()}
 			</article>
