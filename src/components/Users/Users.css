@@ -24,6 +24,10 @@
 	background-color:#1a1a4f;
 }
 
+#grid.hidden, #list.hidden, #sort.hidden, #move-item.hidden {
+	display:none;
+}
+
 #sort, #move-item {
 	background-color: #6262c2;
 }
@@ -36,6 +40,3 @@ main>div>p {
 	font-weight: bold;
 }
 
-.hidden {
-	display:none;
-}
