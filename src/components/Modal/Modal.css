@@ -1,3 +1,8 @@
+@keyframes fly-in {
+  from {top: -350px;}
+  to {top: 0;}
+} 
+
 section.modal {
 	background: rgba(98, 98, 194, 0.5);
 	position:fixed;
@@ -15,6 +20,11 @@ section.modal div.container {
 	border: solid 2px #6262c2;
 	border-radius:5px;
 	position:relative;
+	animation: fly-in 0.5s linear;
+}
+
+section.modal div.container.fly-out {
+	animation: fly-in 0.5s linear alternate;
 }
 
 section.modal div.container p {
